@@ -1,0 +1,120 @@
+Program.Sub.ScreenSU.Start
+gui.Form1..create
+gui.Form1..caption("Form1")
+gui.Form1..size(3225,3420)
+gui.Form1..position(0,0)
+gui.Form1..alwaysontop(False)
+gui.Form1..fontname("Arial")
+gui.Form1..fontsize(8)
+gui.Form1..forecolor(0)
+gui.Form1..fontstyle(,,,,)
+gui.Form1..BackColor(-2147483633)
+gui.Form1..controlbox(True)
+gui.Form1..maxbutton(True)
+gui.Form1..minbutton(True)
+gui.Form1..mousepointer(0)
+gui.Form1..moveable(True)
+gui.Form1..sizeable(True)
+gui.Form1..ShowInTaskBar(True)
+gui.Form1..titlebar(True)
+gui.Form1.lblPart.create(label)
+gui.Form1.lblPart.caption("Part Number")
+gui.Form1.lblPart.backstyle(0)
+gui.Form1.lblPart.visible(True)
+gui.Form1.lblPart.size(1935,255)
+gui.Form1.lblPart.zorder(1)
+gui.Form1.lblPart.position(200,200)
+gui.Form1.lblPart.enabled(True)
+gui.Form1.lblPart.fontname("Arial")
+gui.Form1.lblPart.fontsize(8)
+gui.Form1.lblPart.BackColor(-2147483633)
+gui.Form1.txtPart.create(textbox)
+gui.Form1.txtPart.text("")
+gui.Form1.txtPart.visible(True)
+gui.Form1.txtPart.size(2370,330)
+gui.Form1.txtPart.zorder(0)
+gui.Form1.txtPart.position(200,400)
+gui.Form1.txtPart.enabled(True)
+gui.Form1.txtPart.fontname("Arial")
+gui.Form1.txtPart.fontsize(8)
+gui.Form1.txtPart.BackColor(-2147483643)
+gui.Form1.lblAltPrice.create(label)
+gui.Form1.lblAltPrice.caption("Alt Price 1")
+gui.Form1.lblAltPrice.backstyle(0)
+gui.Form1.lblAltPrice.visible(True)
+gui.Form1.lblAltPrice.size(1935,255)
+gui.Form1.lblAltPrice.zorder(1)
+gui.Form1.lblAltPrice.position(200,1000)
+gui.Form1.lblAltPrice.enabled(True)
+gui.Form1.lblAltPrice.fontname("Arial")
+gui.Form1.lblAltPrice.fontsize(8)
+gui.Form1.lblAltPrice.BackColor(-2147483633)
+gui.Form1.txtAltP.create(textbox)
+gui.Form1.txtAltP.text("")
+gui.Form1.txtAltP.visible(True)
+gui.Form1.txtAltP.size(2280,315)
+gui.Form1.txtAltP.zorder(0)
+gui.Form1.txtAltP.position(200,1200)
+gui.Form1.txtAltP.enabled(True)
+gui.Form1.txtAltP.fontname("Arial")
+gui.Form1.txtAltP.fontsize(8)
+gui.Form1.txtAltP.BackColor(-2147483643)
+gui.Form1.cmdSave.create(button)
+gui.Form1.cmdSave.caption("Save")
+gui.Form1.cmdSave.visible(True)
+gui.Form1.cmdSave.size(855,375)
+gui.Form1.cmdSave.zorder(0)
+gui.Form1.cmdSave.position(1100,2000)
+gui.Form1.cmdSave.enabled(True)
+gui.Form1.cmdSave.fontname("Arial")
+gui.Form1.cmdSave.fontsize(8)
+gui.Form1.cmdSave.event(click,Save)
+
+
+Program.Sub.ScreenSU.End
+
+Program.Sub.Preflight.Start
+
+Program.Sub.Preflight.End
+
+Program.Sub.Main.Start
+'F.ODBC.Connection!con.OpenConnection("Global_ENM","Master","master")
+'F.ODBC.Connection!con.OpenRecordsetRO("rstI","Select Part from Inventory_MSTR order by Part")
+'F.Intrinsic.Control.If(V.ODBC.con!rstI.EOF,=,False)
+	'something happens here...there is data coming back
+'	F.Intrinsic.Control.If(V.Passed.000010,=,"0025")
+'		V.Passed.000053.Set(123.50)
+'	F.Intrinsic.Control.Else
+'		V.Passed.000053.Set(0.0)
+'	F.Intrinsic.Control.EndIf
+'F.Intrinsic.Control.Else
+'	F.Intrinsic.UI.Msgbox("No Data was found!")
+'F.Intrinsic.Control.EndIf
+F.Intrinsic.Control.CallSub("Part")
+Gui.Form1..Show
+F.Intrinsic.Control.End
+
+Program.Sub.Main.End
+
+Program.Sub.Part.Start
+Gui.Form1.txtPart.Text(V.Passed.000010)
+
+Program.Sub.Part.End
+
+Program.Sub.Save.Start
+F.Intrinsic.Control.If(V.Screen.Form1!txtAltP.Text,=,"")
+	V.Passed.000053.Set(0.0)
+F.Intrinsic.Control.Else
+	V.Passed.000053.Set(V.Screen.Form1!txtAltP.Text)
+F.Intrinsic.Control.EndIf
+
+
+Program.Sub.Save.End
+
+Program.Sub.EndProg.Start
+F.Intrinsic.Control.End
+
+
+Program.Sub.EndProg.End
+
+
